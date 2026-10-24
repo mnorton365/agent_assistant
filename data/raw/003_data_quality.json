@@ -1,0 +1,8 @@
+{
+  "document_id": "POL-003",
+  "title": "Data Quality Standard",
+  "source": "Synthetic Agency Data Office",
+  "updated_at": "2026-09-20T09:00:00Z",
+  "classification": "PUBLIC",
+  "text": "Data pipelines must validate required fields, detect duplicate records, record processing failures, and preserve source lineage. Failed records must be quarantined for investigation."
+}
