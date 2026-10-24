@@ -1,3 +1,7 @@
+# Core
+__pycache__
+.vscode
+
 # Ingestion output
 data/processed/
 data/rejected/
