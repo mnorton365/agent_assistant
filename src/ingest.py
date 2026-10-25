@@ -63,13 +63,13 @@ def ingest(raw_dir: Path, output_dir: Path):
             normalized_record = document.model_dump(mode = "json")
 
             # Serialize documents
-            canonical_text = json.dumps(normalized_record, ensure_ascii = False, sort_keys = True)
+            standardized_text = json.dumps(normalized_record, ensure_ascii = False, sort_keys = True)
             
             # Create Accepted list-of-dictionaries dataset to store normalized documents
             accepted.append({
                 **normalized_record,
                 "source_file": path.name,
-                "content_sha256": sha256_text(canonical_text)})
+                "content_sha256": sha256_text(standardized_text)})
         
         except (json.JSONDecodeError, UnicodeDecodeError, ValidationError, ValueError) as exc:
             # Create Rejected list-of-dictionaries dataset for 4x Error options
