@@ -11,8 +11,8 @@ def sha256_text(text: str):
     # Purpose: Returns a SHA-256 hash of the UTF-8 text.
     return hashlib.sha256(text.encode("UTF-8")).hexdigest()
 
-def write_json1(path: Path, records: list[dict[str, Any]]):
-    # Purpose: Writes deterministic JSON output to a list.
+def write_jsonl(path: Path, records: list[dict[str, Any]]):
+    # Purpose: Writes records to deterministic JSON Lines.
 
     # Verifies output folder's existence (creates folder if missing)
     path.parent.mkdir(parents = True, exist_ok = True)
@@ -23,9 +23,9 @@ def write_json1(path: Path, records: list[dict[str, Any]]):
             file.write(json.dumps(record, ensure_ascii = False, sort_keys = True) + "\n")
 
 def ingest(raw_dir: Path, output_dir: Path):
-    # Purpose: Validates source documents & produces clean / regected datasets.
+    # Purpose: Validates source documents to produce accepted and rejected datasets.
 
-    # Clean directory filepaths
+    # Resolve input / output directory paths for reliability
     raw_dir = raw_dir.resolve()
     output_dir = output_dir.resolve()
 
@@ -34,7 +34,7 @@ def ingest(raw_dir: Path, output_dir: Path):
         raise FileNotFoundError(f"Raw directory not found: {raw_dir}.")
 
     # Error Check: Directories aren't synonymous
-    if output_dir == raw_dir or raw_dir in output_dir.parents:
+    if raw_dir == output_dir or raw_dir in output_dir.parents:
         raise ValueError("Output directory must be outside input directory.")
 
     # Establish output dataset & TBD TBD TBD
