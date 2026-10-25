@@ -2,12 +2,13 @@ import json
 import pytest
 import sys
 
-from ingest import ingest
 from pathlib import Path
 
-# Modify src modules to be importable for tests
+# Establish project's src directory path for imports
 project_root = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(project_root / "src"))
+
+from ingest import ingest
 
 def create_document(document_id: str):
     # Purpose: Creates a testing document w/fake data.
