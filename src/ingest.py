@@ -60,7 +60,7 @@ def ingest(raw_dir: Path, output_dir: Path):
             seen_ids.add(document.document_id)
 
             # Normalize documents
-            normalized_record = document.model_dump(mode = "JSON")
+            normalized_record = document.model_dump(mode = "json")
 
             # Serialize documents
             canonical_text = json.dumps(normalized_record, ensure_ascii = False, sort_keys = True)

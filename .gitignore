@@ -1,5 +1,6 @@
 # Core
 __pycache__/
+.pytest_cache/
 .vscode/
 
 # Ingestion output
